@@ -28,7 +28,6 @@ class ProjectList(Resource):
         try:
             project.save_to_db()
         except:
-            print('Inserting {} {}'.format( data['name'], data['to_date']))
             return {'message': 'An error occured inserting the project'}, 500
 
-        return project.json()
+        return project.json(), 201

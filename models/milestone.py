@@ -5,7 +5,7 @@ class MilestoneModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
-    to_date = db.Column(db.DateTime())
+    to_date = db.Column(db.String(80))
 
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
     project = db.relationship('ProjectModel')

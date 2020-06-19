@@ -7,6 +7,8 @@ class ProjectModel(db.Model):
     name = db.Column(db.String(80))
     to_date = db.Column(db.String(80))
 
+    milestones = db.relationship('MilestoneModel', lazy='dynamic')
+
     def __init__(self, name, to_date):
         self.name = name
         self.to_date = to_date
@@ -14,7 +16,8 @@ class ProjectModel(db.Model):
     def json(self):
         return {
             'name': self.name,
-            'to_date': self.to_date
+            'to_date': self.to_date,
+            'milestones': [milestone.json() for milestone in self.milestones.all()]
         }
 
     def save_to_db(self):
