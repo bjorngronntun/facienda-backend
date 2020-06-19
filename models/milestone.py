@@ -10,6 +10,8 @@ class MilestoneModel(db.Model):
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
     project = db.relationship('ProjectModel')
 
+    tasks = db.relationship('TaskModel', lazy='dynamic')
+
     def __init__(self, name, to_date, project_id):
         self.name = name
         self.to_date = to_date
@@ -19,6 +21,7 @@ class MilestoneModel(db.Model):
         return {
             'name': self.name,
             'to_date': self.to_date,
+            'tasks': [task.json() for task in self.tasks.all()],
             'project_id': self.project_id
         }
 
