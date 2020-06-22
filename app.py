@@ -3,6 +3,7 @@ from flask_restful import Api
 from resources.project import ProjectList
 from resources.milestone import MilestoneList
 from resources.task import TaskList
+from resources.note import NoteList
 
 app = Flask(__name__)
 
@@ -18,6 +19,7 @@ def create_tables():
 api.add_resource(ProjectList, '/projects')
 api.add_resource(MilestoneList, '/milestones')
 api.add_resource(TaskList, '/tasks')
+api.add_resource(NoteList, '/notes')
 
 if __name__ == '__main__':
     from db import db
